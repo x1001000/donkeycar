@@ -88,6 +88,10 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
         elif cfg.CAMERA_TYPE == "PICAM":
             from donkeycar.parts.camera import PiCamera
             cam = PiCamera(image_w=cfg.IMAGE_W, image_h=cfg.IMAGE_H, image_d=cfg.IMAGE_DEPTH)
+############################################################
+            cam.camera.hflip = True
+            cam.camera.vflip = True
+############################################################
         elif cfg.CAMERA_TYPE == "WEBCAM":
             from donkeycar.parts.camera import Webcam
             cam = Webcam(image_w=cfg.IMAGE_W, image_h=cfg.IMAGE_H, image_d=cfg.IMAGE_DEPTH)
@@ -456,7 +460,14 @@ def drive(cfg, model_path=None, use_joystick=False, model_type=None, camera_type
 
         V.add(steering, inputs=['angle'])
         V.add(motor, inputs=["throttle"])
-    
+
+#########################################################################
+    elif cfg.DRIVE_TRAIN_TYPE == "LUCKY":
+        import mycontrol
+        control = mycontrol.control()
+        V.add(control, inputs=['angle', 'throttle'])
+#########################################################################
+
     #add tub to save data
 
     inputs=['cam/image_array',

@@ -8,3 +8,5 @@ If desired, all config overrides can be specified here.
 The update operation will not touch this file.
 """
 
+DRIVE_TRAIN_TYPE = "LUCKY"
+USE_JOYSTICK_AS_DEFAULT = False
