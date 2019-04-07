@@ -31,10 +31,14 @@ class control:
             dc34 = throttle * 100
             if angle > 0:
                 dc34 *= (1 - angle)
+                print('dc34 =', dc34)
             elif angle < 0:
                 dc12 *= (1 + angle)
-            en12.ChangeDutyCycle(dc12)
-            en34.ChangeDutyCycle(dc34)
+                print('dc12 =', dc12)
+            try:en12.ChangeDutyCycle(dc12)
+            except:pass
+            try:en34.ChangeDutyCycle(dc34)
+            except:pass
         else:
             en12.ChangeDutyCycle(0)
             en34.ChangeDutyCycle(0)
