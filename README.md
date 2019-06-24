@@ -5,4 +5,4 @@ https://github.com/tawnkramer/donkey
 ## 2. train a model
 `python manage.py train --tub data/some_data --model models/some_model.h5 --type rnn`
 ## 3. test a model
-`python manage.py drive --model models/a_model --type rnn`
+`python manage.py drive --model models/some_model.h5 --type rnn`
